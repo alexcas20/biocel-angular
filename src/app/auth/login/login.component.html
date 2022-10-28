@@ -1,0 +1,62 @@
+<div class="hold-transition login-page fondo">
+    <div class="login-box">
+      <div class="login-logo">
+        <a href="../../index2.html" class="login-title"><b>BioCell</b> Lab</a>
+      </div>
+      <!-- /.login-logo -->
+      <div class="card">
+        <div class="card-body login-card-body">
+    
+          <form [formGroup]="myForm" method="post" id="form">
+            <div class="input-group mb-3">
+              <input type="text" name="user" formControlName="usuario" class="form-control" placeholder="Usuario" [class.is-invalid]="f.usuario.errors && f.usuario.touched">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                Usuario Obligatorio
+              </div>
+              
+            </div>
+            <div class="input-group mb-3">
+              <input type="password" formControlName="password" name="pass" class="form-control" placeholder="Password" [class.is-invalid]="f.password.errors && f.password.touched" >
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                Password Obligatoria
+              </div>
+             
+            </div>
+            <div class="row">
+              <div class="col-8">
+                <div class="icheck-primary">
+                  <input type="checkbox" id="remember">
+                  <label for="remember">
+                    Remember Me
+                  </label>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-4">
+                <button type="submit" class="btn btn-primary btn-block">Acceder</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+    
+          
+          <!-- /.social-auth-links
+          <p class="mb-0">
+            <a href="register.html" class="text-center">Register a new membership</a>
+          </p> -->
+        </div>
+        <!-- /.login-card-body -->
+      </div>
+    </div>
+</div>
+    <!-- /.login-box -->
