@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginI } from 'src/app/models/login.interface';
+import { ApiService } from 'src/app/services/api.service';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
   user: string = '';
   pass:string = '';
 
-  constructor(private fb:FormBuilder, private ruta:Router) { }
+  constructor(private fb:FormBuilder, private ruta:Router, private api: ApiService) { }
 
   ngOnInit(): void {
     this.myForm = this.createMyForm();
@@ -34,6 +36,12 @@ export class LoginComponent implements OnInit {
 
   get f():any{
     return this.myForm.controls;
+  }
+
+  onLogin(form:LoginI){
+    this.api.login(form).subscribe(resp => {
+      console.log(resp);
+    })
   }
 
 
