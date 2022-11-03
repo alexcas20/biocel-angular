@@ -6,7 +6,6 @@ import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ModalComponent } from './modal/modal.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,9 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule,
-    FormsModule,
-    ReactiveFormsModule
+    SharedModule
   ],
   exports:[
     DashboardComponent,
