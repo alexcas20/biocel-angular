@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Añadir Usuario</h1>
+<div mat-dialog-content>
+  <form [formGroup]="productForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Usuario</mat-label>
+      <input formControlName="Usuario" matInput placeholder="Usuario" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="Rol" placeholder="Rol">
+        <mat-option [value]="">Administrador</mat-option>
+        <mat-option [value]="">Usuario</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <input formControlName="Contraseña" matInput placeholder="Contraseña" />
+    </mat-form-field>
+  </form>
+  
+</div>
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addProduct()">Guardar</button>
+</div>
