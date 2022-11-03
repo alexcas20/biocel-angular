@@ -7,7 +7,7 @@
       <div class="card">
         <div class="card-body login-card-body">
     
-          <form [formGroup]="myForm" method="post" id="form">
+          <form [formGroup]="myForm" (ngSubmit)="onLogin(myForm.value)" method="post" id="form">
             <div class="input-group mb-3">
               <input type="text" name="user" formControlName="usuario" class="form-control" placeholder="Usuario" [class.is-invalid]="f.usuario.errors && f.usuario.touched">
               <div class="input-group-append">
@@ -50,10 +50,10 @@
           </form>
     
           
-          <!-- /.social-auth-links
+          <!-- /.social-auth-links -->
           <p class="mb-0">
-            <a href="register.html" class="text-center">Register a new membership</a>
-          </p> -->
+            <a [routerLink]="['/register']" class="text-center">Registrarse</a>
+          </p>
         </div>
         <!-- /.login-card-body -->
       </div>
