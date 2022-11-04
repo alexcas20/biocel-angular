@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from '@angular/forms';
-import { RegisterI } from 'src/app/models/register.interface';
 import { ApiService } from 'src/app/services/api.service';
 
 
@@ -16,14 +15,17 @@ export class UsuariosComponent implements OnInit {
   
 
   constructor(private apiService: ApiService) { }
-  showModal = false;
+ 
   ngOnInit(): void {
     this.apiService.serviceGetUsers().subscribe((resp) => {
       console.log(resp)
       this.usuarios = resp;
+   
       
     })
   }
+
+
 
   public formRegister: FormGroup = new FormGroup({
     user: new FormControl('',[Validators.required]),
@@ -38,21 +40,25 @@ export class UsuariosComponent implements OnInit {
   }
 
   registrarUser(){
-    let $txtUser = (<HTMLInputElement>document.getElementById('txt_usuario')),
-    $txtPass = (<HTMLInputElement>document.getElementById('txt_pass')),
+    let $txtUser = (<HTMLInputElement>document.getElementById('user')),
+    $txtPass = (<HTMLInputElement>document.getElementById('password')),
     txtRol = (<HTMLInputElement>document.getElementById('rol')),
     txtStatus = (<HTMLInputElement>document.getElementById('status'));
+
+    console.group($txtUser.value, ' ', $txtPass.value)
+   
 
     this.apiService.register($txtUser.value,$txtPass.value,txtRol.value,txtStatus.value).subscribe(resp => {
       
       console.log(resp)
       
     })
+    
   }
 
   reset(){
-    let $txtUser = (<HTMLInputElement>document.getElementById('txt_usuario')),
-    $txtPass = (<HTMLInputElement>document.getElementById('txt_pass')),
+    let $txtUser = (<HTMLInputElement>document.getElementById('user')),
+    $txtPass = (<HTMLInputElement>document.getElementById('password')),
     txtRol = (<HTMLInputElement>document.getElementById('rol')),
     txtStatus = (<HTMLInputElement>document.getElementById('status'));
 
@@ -60,6 +66,8 @@ export class UsuariosComponent implements OnInit {
     $txtPass.value = '';
     txtRol.value = '';
     txtStatus.value ='';
+
+    this.ngOnInit();
 
   }
   
