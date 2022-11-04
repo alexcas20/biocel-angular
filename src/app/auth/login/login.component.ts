@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginI } from 'src/app/models/login.interface';
+import { ResponseI } from 'src/app/models/response.interface';
+import { ApiService } from 'src/app/services/api.service';
 
 
 @Component({
@@ -14,26 +17,52 @@ export class LoginComponent implements OnInit {
   public myForm!:FormGroup;
 
 
-  user: string = '';
-  pass:string = '';
+ 
 
-  constructor(private fb:FormBuilder, private ruta:Router) { }
+  constructor(private fb:FormBuilder, private ruta:Router, private api:ApiService) { }
 
   ngOnInit(): void {
     this.myForm = this.createMyForm();
+    this.checkLocalStorage();
   }
 
   createMyForm():FormGroup{
     return this.fb.group({
-      usuario:['',Validators.required],
+      user:['',Validators.required],
       password:['',Validators.required]
     });
   }
 
+  checkLocalStorage(){
+    if(localStorage.getItem('token')){
+      this.ruta.navigate(['dashboard']);
+    } else {
+      this.ruta.navigate(['']);
+    }
+  }
   
 
   get f():any{
     return this.myForm.controls;
+  }
+
+  onLogin(form:LoginI){
+    this.api.login(form).subscribe(resp => {
+
+      let dataResponse:ResponseI = resp;
+      console.log(resp);
+      console.log('dataResponse: ', dataResponse)
+
+      if(dataResponse.status){
+         localStorage.setItem('token',dataResponse.result.token)
+         this.ruta.navigate(['dashboard'])
+        
+
+        console.log('token: ',dataResponse.result);
+        console.log('token: ', dataResponse.status);
+
+      }
+    })
   }
 
 
