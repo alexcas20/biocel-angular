@@ -9,7 +9,7 @@
     
           <form [formGroup]="myForm" (ngSubmit)="onLogin(myForm.value)" method="post" id="form">
             <div class="input-group mb-3">
-              <input type="text" name="user" formControlName="usuario" class="form-control" placeholder="Usuario" [class.is-invalid]="f.usuario.errors && f.usuario.touched">
+              <input type="text" name="user" formControlName="user" class="form-control" placeholder="Usuario" [class.is-invalid]="f.user.errors && f.user.touched">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-user"></span>
