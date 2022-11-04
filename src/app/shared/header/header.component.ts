@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,24 +6,13 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private ruta: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
 
-    this.checkLocalStorage();
+  
   }
 
  
-
-  checkLocalStorage(){
-    if(!localStorage.getItem('token')){
-      this.ruta.navigate(['login'])
-    }
-  }
-
-  salir(){
-    localStorage.removeItem('token');
-    this.ngOnInit();
-  }
 
 }
