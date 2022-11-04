@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ModalComponent } from './modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PacientesComponent } from './pacientes/pacientes.component';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     UsuariosComponent,
     PagesComponent,
-    ModalComponent
+    ModalComponent,
+    PacientesComponent
   ],
   imports: [
     CommonModule,
