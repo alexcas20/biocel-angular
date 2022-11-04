@@ -12,9 +12,9 @@ export class loginService{
 
     constructor(private http:HttpClient){ }
 
-
-    loginService(form:any):Observable<Response>{
-        let direccion = this.url + '/users/'
-        return this.http.post<Response>(direccion,form);
+        getToken(){
+            return localStorage.getItem('token')
+        }
+    
     }
-}
+

@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginI } from '../models/login.interface';
 import { ResponseI } from '../models/response.interface';
 import { RegisterI } from '../models/register.interface';
+import { loginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private url:string = 'http://127.0.0.1:4000/lab'
+  private url:string = 'http://127.0.0.1:3000/lab';
+ 
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private loginService : loginService) { }
 
-  register(pass:string, user:string,rol:string,status:string):Observable<RegisterI>{
+ 
+
+  register(user:string, password:string,rol:string,status:string):Observable<RegisterI>{
     let direccion = `${this.url}/registerUser`
-    return this.http.post<RegisterI>(direccion,[user,pass,rol,status])
+    return this.http.post<RegisterI>(direccion,{user,password,rol,status})
   }
 
   login(form:LoginI):Observable<ResponseI>{
@@ -26,8 +30,13 @@ export class ApiService {
 
 
   serviceGetUsers():Observable<any>{
+   
     let direccion = `${this.url}/allUsers`;
-    return this.http.get(direccion);
+    return this.http.get(direccion,{headers: new HttpHeaders({
+      'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('token')!)
+    })
+  });
+  
   }
 
 }
