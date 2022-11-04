@@ -32,10 +32,8 @@ export class ApiService {
   serviceGetUsers():Observable<any>{
    
     let direccion = `${this.url}/allUsers`;
-    return this.http.get(direccion,{headers: new HttpHeaders({
-      'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('token')!)
-    })
-  });
+    return this.http.get(direccion)
+
   
   }
 
