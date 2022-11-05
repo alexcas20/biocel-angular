@@ -3,15 +3,16 @@ import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 
 
+
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-  titulo = 'Usuarios'
+ 
   usuarios:any;
-
+  parentMessage = 'Usuarios es el titulo'
   
 
   constructor(private apiService: ApiService) { }
@@ -20,6 +21,7 @@ export class UsuariosComponent implements OnInit {
     this.apiService.serviceGetUsers().subscribe((resp) => {
       console.log(resp)
       this.usuarios = resp;
+     
    
       
     })
