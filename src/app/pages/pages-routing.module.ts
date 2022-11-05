@@ -10,9 +10,9 @@ const routes: Routes = [
 
  {path: 'dashboard', component: PagesComponent,
     children: [
-      {path: '', component:DashboardComponent},
-      {path: 'usuarios', component:UsuariosComponent},
-      {path: 'pacientes', component:PacientesComponent}
+      {path: '', component:DashboardComponent, data:{titulo:'Dashboard'}},
+      {path: 'usuarios', component:UsuariosComponent, data:{titulo:'Usuarios'}},
+      {path: 'pacientes', component:PacientesComponent, data:{titulo:'Pacientes'}}
     ]
   }
 ]
