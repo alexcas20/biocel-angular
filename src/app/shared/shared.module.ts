@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { CabeceraPagesComponent } from './cabecera-pages/cabecera-pages.component';
 
 
 
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    CabeceraPagesComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { RouterModule } from '@angular/router';
   exports:[
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    CabeceraPagesComponent
   ]
 })
 export class SharedModule { }

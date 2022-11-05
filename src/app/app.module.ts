@@ -9,6 +9,8 @@ import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 import { PagesModule } from './pages/pages.module';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CabeceraPagesComponent } from './shared/cabecera-pages/cabecera-pages.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [CabeceraPagesComponent],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
