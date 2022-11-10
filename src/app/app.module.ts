@@ -8,7 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 import { PagesModule } from './pages/pages.module';
 import { HttpClientModule } from '@angular/common/http';
-import { DialogComponent } from './dialog/dialog.component'
+import { DialogComponent } from './pages/dialog/dialog.component'
 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { MatFormFieldModule } from '@angular/material/form-field'
