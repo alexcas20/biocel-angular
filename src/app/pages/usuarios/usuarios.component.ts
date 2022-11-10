@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogComponent } from 'src/app/dialog/dialog.component';
+import { DialogComponent } from 'src/app/pages/dialog/dialog.component';
 
 @Component({
   selector: 'app-usuarios',
