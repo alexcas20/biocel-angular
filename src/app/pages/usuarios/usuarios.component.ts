@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
-import { RegisterI } from 'src/app/models/register.interface';
 import { ApiService } from 'src/app/services/api.service';
+import { MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/pages/dialog/dialog.component';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import { filter } from 'rxjs';
 
 
 @Component({
@@ -12,56 +16,21 @@ import { ApiService } from 'src/app/services/api.service';
 export class UsuariosComponent implements OnInit {
   titulo = 'Usuarios'
   usuarios:any;
-
-  
-
   constructor(private apiService: ApiService) { }
   showModal = false;
   ngOnInit(): void {
-    this.apiService.serviceGetUsers().subscribe((resp) => {
+    this.getAllUsers();
+    /* this.api.getUsers().subscribe((resp) => {
       console.log(resp)
       this.usuarios = resp;
-      
     })
   }
-
-  public formRegister: FormGroup = new FormGroup({
-    user: new FormControl('',[Validators.required]),
-    password: new FormControl('',[Validators.required]),
-    rol: new FormControl('',[Validators.required]),
-    status: new FormControl('',[Validators.required])
-  })
 
   abrirModalRegistroUsuario(){
-    ($('#modal_registro_usuario')as any).modal({backdrop: 'static',keyboard:false}); //mantener modal para cierre solo con click boton
-    ($('#modal_registro_usuario')as any).modal('show');
+    console.log('hola');
+    this.showModal= true
+    console.log(this.showModal)
+    
   }
-
-  registrarUser(){
-    let $txtUser = (<HTMLInputElement>document.getElementById('txt_usuario')),
-    $txtPass = (<HTMLInputElement>document.getElementById('txt_pass')),
-    txtRol = (<HTMLInputElement>document.getElementById('rol')),
-    txtStatus = (<HTMLInputElement>document.getElementById('status'));
-
-    this.apiService.register($txtUser.value,$txtPass.value,txtRol.value,txtStatus.value).subscribe(resp => {
-      
-      console.log(resp)
-      
-    })
-  }
-
-  reset(){
-    let $txtUser = (<HTMLInputElement>document.getElementById('txt_usuario')),
-    $txtPass = (<HTMLInputElement>document.getElementById('txt_pass')),
-    txtRol = (<HTMLInputElement>document.getElementById('rol')),
-    txtStatus = (<HTMLInputElement>document.getElementById('status'));
-
-    $txtUser.value = '';
-    $txtPass.value = '';
-    txtRol.value = '';
-    txtStatus.value ='';
-
-  }
-  
 
 }

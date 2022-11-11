@@ -1,6 +1,6 @@
-export interface RegisterI{
-    user: string,
-    password: string,
-    rol: string,
-    status: string
+export default  interface Register{
+    user:string,
+    rol:string,
+    password:string,
+    status:string
 }

@@ -30,4 +30,13 @@ export class ApiService {
     return this.http.get(direccion);
   }
 
+  putUser(data:any, code:number){
+    let direccion = `${this.url}/EditUser`;
+    return this.http.put(direccion,code)
+  }
+
+  deleteUser(code:any){
+    let direccion = `${this.url}/Delete/${code}`;
+    return this.http.delete(direccion,code)
+  }
 }
