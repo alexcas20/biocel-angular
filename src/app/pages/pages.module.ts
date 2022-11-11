@@ -5,7 +5,6 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { ModalComponent } from './modal/modal.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
@@ -31,7 +30,7 @@ import { DialogComponent } from './dialog/dialog.component';
     DashboardComponent,
     UsuariosComponent,
     PagesComponent,
-    ModalComponent
+    
   ],
   imports: [
     CommonModule,
