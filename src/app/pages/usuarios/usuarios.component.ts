@@ -1,8 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
-import { RegisterI } from 'src/app/models/register.interface';
+import { Component, Input, OnInit, ViewChild} from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-
+import { MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/pages/dialog/dialog.component';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
@@ -12,56 +15,78 @@ import { ApiService } from 'src/app/services/api.service';
 export class UsuariosComponent implements OnInit {
   titulo = 'Usuarios'
   usuarios:any;
+  displayedColumns: string[] = ['code', 'user', 'rol', 'status', 'accion'];
+  dataSource!: MatTableDataSource<any>;
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private api: ApiService, private dialog: MatDialog) { }
   
-
-  constructor(private apiService: ApiService) { }
-  showModal = false;
   ngOnInit(): void {
-    this.apiService.serviceGetUsers().subscribe((resp) => {
+    this.getAllUsers();
+    /* this.api.getUsers().subscribe((resp) => {
       console.log(resp)
       this.usuarios = resp;
-      
+    }) */
+  }
+
+  openDialog(){
+    this.dialog.open(DialogComponent, {
+      width: '30%'
+    }).afterClosed().subscribe(val=>{
+      if(val === 'save'){
+        this.getAllUsers();
+      }
     })
   }
 
-  public formRegister: FormGroup = new FormGroup({
-    user: new FormControl('',[Validators.required]),
-    password: new FormControl('',[Validators.required]),
-    rol: new FormControl('',[Validators.required]),
-    status: new FormControl('',[Validators.required])
-  })
-
-  abrirModalRegistroUsuario(){
-    ($('#modal_registro_usuario')as any).modal({backdrop: 'static',keyboard:false}); //mantener modal para cierre solo con click boton
-    ($('#modal_registro_usuario')as any).modal('show');
-  }
-
-  registrarUser(){
-    let $txtUser = (<HTMLInputElement>document.getElementById('txt_usuario')),
-    $txtPass = (<HTMLInputElement>document.getElementById('txt_pass')),
-    txtRol = (<HTMLInputElement>document.getElementById('rol')),
-    txtStatus = (<HTMLInputElement>document.getElementById('status'));
-
-    this.apiService.register($txtUser.value,$txtPass.value,txtRol.value,txtStatus.value).subscribe(resp => {
-      
-      console.log(resp)
-      
+  getAllUsers(){
+    this.api.getUsers().subscribe({
+      next:(res)=>{
+        console.log(res);
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error:(err)=>{
+        alert("Error al obtener todos los usuarios")
+      }
     })
   }
 
-  reset(){
-    let $txtUser = (<HTMLInputElement>document.getElementById('txt_usuario')),
-    $txtPass = (<HTMLInputElement>document.getElementById('txt_pass')),
-    txtRol = (<HTMLInputElement>document.getElementById('rol')),
-    txtStatus = (<HTMLInputElement>document.getElementById('status'));
+  editUser(row:any){
+    this.dialog.open(DialogComponent,{
+      width:'30%',
+      data:row
+    }).afterClosed().subscribe(val=>{
+      if(val === 'update'){
+        this.getAllUsers();
+      }
+    })
+  }
 
-    $txtUser.value = '';
-    $txtPass.value = '';
-    txtRol.value = '';
-    txtStatus.value ='';
+  deleteUser(code:any){
+    this.api.deleteUser(code).subscribe({
+      next:(res)=>{
+        this.getAllUsers();
+        alert("Se ha eliminado el usuario")
+      },
+      error:()=>{
+        alert("Error al eliminar al usuario")
+      }
+    })
 
   }
-  
+
+  applyFilter(event : Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+
+    if(this.dataSource.paginator){
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 
 }
