@@ -21,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '../auth/auth.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { DialogComponent } from './dialog/dialog.component';
+
 
 
 
@@ -30,7 +30,6 @@ import { DialogComponent } from './dialog/dialog.component';
     DashboardComponent,
     UsuariosComponent,
     PagesComponent,
-    
   ],
   imports: [
     CommonModule,
