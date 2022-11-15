@@ -1,6 +1,6 @@
 export default  interface Register{
     user:string,
-    rol:string,
     password:string,
+    rol:string,
     status:string
 }

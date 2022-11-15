@@ -8,7 +8,7 @@ import  Register  from '../models/register.interface';
 })
 export class ApiService {
 
-  private url:string = 'http://127.0.0.1:5000/lab'
+  private url:string = 'http://127.0.0.1:3000/lab'
 
   constructor(private http:HttpClient) { }
 
@@ -22,9 +22,9 @@ export class ApiService {
     return this.http.get(direccion);
   }
 
-  putUser(data:any, code:number){
-    let direccion = `${this.url}/EditUser`;
-    return this.http.put(direccion,code)
+  putUser(code:any, form:Register):Observable<Register>{
+    let direccion = `${this.url}/editUser/${code}`;
+    return this.http.put<Register>(direccion, form)
   }
 
   deleteUser(code:any){
