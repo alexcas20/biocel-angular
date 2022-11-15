@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginI } from 'src/app/models/login.interface';
-import { ResponseI } from 'src/app/models/response.interface';
+import { RegisterI } from 'src/app/models/response.interface';
 import { ApiService } from 'src/app/services/api.service';
 
 
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
   onLogin(form:LoginI){
     this.api.login(form).subscribe(resp => {
 
-      let dataResponse:ResponseI = resp;
+      let dataResponse:RegisterI = resp;
       console.log(resp);
       console.log('dataResponse: ', dataResponse)
 

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import  Register  from '../models/register.interface';
+import { RegisterI } from '../models/response.interface';
+import { LoginI } from '../models/login.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,11 @@ export class ApiService {
   private url:string = 'http://127.0.0.1:3000/lab'
 
   constructor(private http:HttpClient) { }
+
+  login(form:LoginI):Observable<RegisterI>{
+    let direccion = `${this.url}/auth`
+    return this.http.post<RegisterI>(direccion,form)
+  }
 
   postData(form:Register ):Observable<Register>{
     let direccion = `${this.url}/registerUser`;
