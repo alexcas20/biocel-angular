@@ -10,7 +10,7 @@ import { LoginI } from '../models/login.interface';
 })
 export class ApiService {
 
-  private url:string = 'http://127.0.0.1:5000/lab'
+  private url:string = 'http://127.0.0.1:3000/lab'
 
   constructor(private http:HttpClient) { }
 
@@ -35,7 +35,7 @@ export class ApiService {
   }
 
   deleteUser(code:any){
-    let direccion = `${this.url}/Delete/${code}`;
+    let direccion = `${this.url}/deleteUser/${code}`;
     return this.http.delete(direccion,code)
   }
 }

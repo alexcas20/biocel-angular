@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import Register from 'src/app/models/register.interface';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dialog',
@@ -15,6 +14,7 @@ export class DialogComponent implements OnInit {
   productForm !: FormGroup;
   actionBtn : string = "Guardar"
   hide = true;
+  codeId = Math.floor(Math.random()*100)
   
   constructor(private formBuilder : FormBuilder, 
     private api : ApiService, 
@@ -23,7 +23,7 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
-      code: ["",Validators.required],
+      code: ['LAB'+this.codeId,Validators.required],
       user : ['',Validators.required],
       password : ['',Validators.required],
       rol : ['',Validators.required],
@@ -48,12 +48,12 @@ export class DialogComponent implements OnInit {
       if(this.productForm.valid){
         this.api.postData(form).subscribe({
           next:(res)=>{
-            Swal.fire('Exito','Se ha registrado el usuario','success')
+            alert("Usuario añadido")
             this.productForm.reset();
             this.dialogRef.close('save');
           },
           error:()=>{
-            Swal.fire('Error','Se ha producido un error al registar el usuario','error')
+            alert("Error al intentar añadir usuario"); 
           }
         })
       }
@@ -66,12 +66,12 @@ export class DialogComponent implements OnInit {
     console.log(this.productForm.get("code")?.value)
     this.api.putUser(this.productForm.get("code")?.value, form).subscribe({
       next:(res)=>{
-        Swal.fire('Exito','Se ha actualizado el usuario','success')
+        alert("Se ha actualizado el usuario");
         this.productForm.reset();
         this.dialogRef.close('update');
       },
       error:()=>{
-        Swal.fire('Exito','Se ha producido un error al actualizar el usuario','error')
+        alert("Error al actualizar al usuario");
       }
     })
   }
