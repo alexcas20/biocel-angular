@@ -13,6 +13,7 @@ export class DialogComponent implements OnInit {
 
   productForm !: FormGroup;
   actionBtn : string = "Guardar"
+  hide = true;
   
   constructor(private formBuilder : FormBuilder, 
     private api : ApiService, 
