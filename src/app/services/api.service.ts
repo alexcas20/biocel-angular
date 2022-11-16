@@ -2,15 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import  Register  from '../models/register.interface';
+import { RegisterI } from '../models/response.interface';
+import { LoginI } from '../models/login.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private url:string = 'http://127.0.0.1:5000/lab'
+  private url:string = 'http://127.0.0.1:3000/lab'
 
   constructor(private http:HttpClient) { }
+
+  login(form:LoginI):Observable<RegisterI>{
+    let direccion = `${this.url}/auth`
+    return this.http.post<RegisterI>(direccion,form)
+  }
 
   postData(form:Register ):Observable<Register>{
     let direccion = `${this.url}/registerUser`;
@@ -22,9 +29,9 @@ export class ApiService {
     return this.http.get(direccion);
   }
 
-  putUser(data:any, code:number){
-    let direccion = `${this.url}/EditUser`;
-    return this.http.put(direccion,code)
+  putUser(code:any, form:Register):Observable<Register>{
+    let direccion = `${this.url}/editUser/${code}`;
+    return this.http.put<Register>(direccion, form)
   }
 
   deleteUser(code:any){

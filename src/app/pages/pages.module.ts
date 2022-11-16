@@ -21,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '../auth/auth.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { DialogComponent } from './dialog/dialog.component';
+import {PacientesComponent} from './pacientes/pacientes.component'
+
 
 
 
@@ -30,7 +31,7 @@ import { DialogComponent } from './dialog/dialog.component';
     DashboardComponent,
     UsuariosComponent,
     PagesComponent,
-    
+    PacientesComponent
   ],
   imports: [
     CommonModule,
@@ -57,6 +58,7 @@ import { DialogComponent } from './dialog/dialog.component';
   exports:[
     DashboardComponent,
     UsuariosComponent,
+    PacientesComponent
   ]
 })
 export class PagesModule { }

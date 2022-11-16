@@ -2,6 +2,10 @@
 <div mat-dialog-content>
   <form [formGroup]="productForm">
     <mat-form-field appearance="outline">
+      <mat-label>Code</mat-label>
+      <input formControlName="code" matInput placeholder="code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Usuario</mat-label>
       <input formControlName="user" matInput placeholder="Usuario" />
     </mat-form-field>
@@ -14,7 +18,15 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Contraseña</mat-label>
-      <input formControlName="password" matInput placeholder="Contraseña" />
+      <input formControlName="password" matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" />
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    <mat-form-field *ngIf="editData" appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" placeholder="Status">
+        <mat-option value="Activo">Activo</mat-option>
+        <mat-option value="Inactivo">Inactivo</mat-option>
+      </mat-select>
     </mat-form-field>
   </form>
   

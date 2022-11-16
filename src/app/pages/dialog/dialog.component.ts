@@ -13,6 +13,7 @@ export class DialogComponent implements OnInit {
 
   productForm !: FormGroup;
   actionBtn : string = "Guardar"
+  hide = true;
   
   constructor(private formBuilder : FormBuilder, 
     private api : ApiService, 
@@ -21,17 +22,21 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
+      code: ["",Validators.required],
       user : ['',Validators.required],
-      rol : ['',Validators.required],
       password : ['',Validators.required],
+      rol : ['',Validators.required],
+      status: ['Activo', Validators.required]
     });
 
     if(this.editData){
     console.log(this.editData);
     this.actionBtn = "Actualizar";
+
+    this.productForm.controls["code"].setValue(this.editData.code);
     this.productForm.controls["user"].setValue(this.editData.user);
     this.productForm.controls["rol"].setValue(this.editData.rol);
-    this.productForm.controls["password"].setValue(this.editData.password);
+    this.productForm.controls["password"].setValue("");
 
     }
 
@@ -52,12 +57,13 @@ export class DialogComponent implements OnInit {
         })
       }
     }else{
-      this.updateUser()
+      this.updateUser(form)
     }
   }
 
-  updateUser(){
-    this.api.putUser(this.productForm.value,this.editData.code).subscribe({
+  updateUser(form:Register){
+    console.log(this.productForm.get("code")?.value)
+    this.api.putUser(this.productForm.get("code")?.value, form).subscribe({
       next:(res)=>{
         alert("Se ha actualizado el usuario");
         this.productForm.reset();

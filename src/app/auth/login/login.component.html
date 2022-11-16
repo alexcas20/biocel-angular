@@ -1,4 +1,16 @@
-<div class="hold-transition login-page fondo">
+<div class="hold-transition login-page area">
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
     <div class="login-box">
       <div class="login-logo">
         <a href="../../index2.html" class="login-title"><b>BioCell</b> Lab</a>
@@ -9,7 +21,7 @@
     
           <form [formGroup]="myForm" method="post" id="form">
             <div class="input-group mb-3">
-              <input type="text" name="user" formControlName="usuario" class="form-control" placeholder="Usuario" [class.is-invalid]="f.usuario.errors && f.usuario.touched">
+              <input type="text" name="user" formControlName="user" class="form-control" placeholder="Usuario" [class.is-invalid]="f.user.errors && f.user.touched">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-user"></span>
@@ -43,7 +55,7 @@
               </div>
               <!-- /.col -->
               <div class="col-4">
-                <button type="submit" class="btn btn-primary btn-block">Acceder</button>
+                <button type="submit" class="btn btn-primary btn-block" (click)="onLogin(myForm.value)">Acceder</button>
               </div>
               <!-- /.col -->
             </div>
