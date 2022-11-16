@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { filter } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuarios',
@@ -50,7 +51,7 @@ export class UsuariosComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       error:(err)=>{
-        alert("Error al obtener todos los usuarios")
+        Swal.fire('Error','No se han encontrado los usuarios','error')
       }
     })
   }
@@ -70,10 +71,10 @@ export class UsuariosComponent implements OnInit {
     this.api.deleteUser(code).subscribe({
       next:(res)=>{
         this.getAllUsers();
-        alert("Se ha eliminado el usuario")
+        Swal.fire('Exito','Se ha eliminado el usuario','success')
       },
       error:()=>{
-        alert("Error al eliminar al usuario")
+        Swal.fire('Error','Se ha producido un error al eliminar el usuario','error')
       }
     })
 

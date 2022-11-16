@@ -10,7 +10,7 @@ import { LoginI } from '../models/login.interface';
 })
 export class ApiService {
 
-  private url:string = 'http://127.0.0.1:3000/lab'
+  private url:string = 'http://127.0.0.1:5000/lab'
 
   constructor(private http:HttpClient) { }
 
