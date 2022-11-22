@@ -33,14 +33,11 @@ export class DialogComponent implements OnInit {
     if(this.editData){
     console.log(this.editData);
     this.actionBtn = "Actualizar";
-
     this.productForm.controls["code"].setValue(this.editData.code);
     this.productForm.controls["user"].setValue(this.editData.user);
     this.productForm.controls["rol"].setValue(this.editData.rol);
     this.productForm.controls["password"].setValue("");
-
     }
-
   }
 
   addUser(form:Register){
@@ -75,5 +72,4 @@ export class DialogComponent implements OnInit {
       }
     })
   }
-
 }

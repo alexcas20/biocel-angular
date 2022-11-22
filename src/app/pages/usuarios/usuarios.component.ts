@@ -26,10 +26,6 @@ export class UsuariosComponent implements OnInit {
   
   ngOnInit(): void {
     this.getAllUsers();
-    /* this.api.getUsers().subscribe((resp) => {
-      console.log(resp)
-      this.usuarios = resp;
-    }) */
   }
 
   openDialog(){
